@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────── */
+/* Theme overrides: remap blue → indigo for a softer,       */
+/* eye-friendly, industrial-standard accent                 */
+/* ──────────────────────────────────────────────────────── */
+@theme {
+    /* Replace all blue-* utilities with indigo shades */
+    --color-blue-50: #eef2ff;
+    --color-blue-100: #e0e7ff;
+    --color-blue-200: #c7d2fe;
+    --color-blue-300: #a5b4fc;
+    --color-blue-400: #818cf8;
+    --color-blue-500: #6366f1;
+    --color-blue-600: #4f46e5;
+    --color-blue-700: #4338ca;
+    --color-blue-800: #3730a3;
+    --color-blue-900: #312e81;
+    --color-blue-950: #1e1b4b;
+
+    /* Warmer, less-harsh dark backgrounds (slate instead of zinc) */
+    --color-zinc-900: #1a1d2e;
+    --color-zinc-950: #0f111a;
+    --color-zinc-800: #252840;
+    --color-zinc-700: #363a5a;
+}
+
+html {
+    font-size: 16.5px;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    font-family: 'Inter', 'Outfit', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ──────────────────────────────────────────────────────── */
+/* Scrollbars                                               */
+/* ──────────────────────────────────────────────────────── */
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+@layer base {
+    button {
+        cursor: pointer;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0.375rem;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    .dark ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #d1d5db;
+        border-radius: 9999px;
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+        background-color: #3f3f46;
+        border-radius: 9999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #9ca3af;
+    }
+
+    .dark ::-webkit-scrollbar-thumb:hover {
+        background-color: #52525b;
+    }
+
+    /* ── Date picker dark mode ── */
+    .dark input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(100%);
+    }
+
+    /* ── Custom checkbox — removed global override to avoid conflicts with JS-controlled checkboxes ── */
+
+    /* ── Select dark mode base ── */
+    select {
+        background-color: #ffffff;
+        color: #111827;
+    }
+
+    .dark select {
+        background-color: #18181b;
+        color: #e4e4e7;
+        border-color: #3f3f46;
+    }
+
+    select option {
+        background-color: #ffffff;
+        color: #111827;
+    }
+
+    .dark select option {
+        background-color: #18181b;
+        color: #e4e4e7;
+    }
+}
+
+/* ──────────────────────────────────────────────────────── */
+/* Animation Keyframes                                      */
+/* ──────────────────────────────────────────────────────── */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* ──────────────────────────────────────────────────────── */
+/* Utility Animation Classes                               */
+/* ──────────────────────────────────────────────────────── */
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.35s ease both;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.25s ease both;
+}
+
+.animate-slide-down {
+    animation: slideDown 0.2s ease both;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.2s ease both;
+}
+
+.stagger-1 {
+    animation-delay: 0.05s;
+}
+
+.stagger-2 {
+    animation-delay: 0.10s;
+}
+
+.stagger-3 {
+    animation-delay: 0.15s;
+}
+
+.stagger-4 {
+    animation-delay: 0.20s;
+}
+
+/* ──────────────────────────────────────────────────────── */
+/* Premium Card Hover                                      */
+/* ──────────────────────────────────────────────────────── */
+
+.card-hover {
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-1px);
+}
+
+/* ──────────────────────────────────────────────────────── */
+/* Gradient text helper                                    */
+/* ──────────────────────────────────────────────────────── */
+.gradient-text {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ──────────────────────────────────────────────────────── */
+/* Password strength bar                                   */
+/* ──────────────────────────────────────────────────────── */
+.strength-bar {
+    height: 3px;
+    border-radius: 9999px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
